@@ -1,6 +1,9 @@
 # Copyright 2011© MaestroDev.  All rights reserved.
 
-require 'spec_helper'
+#require 'spec_helper'
+require 'isaac'
+
+require 'src/irc_participant'
 
 describe Maestro::IrcParticipant do
 
