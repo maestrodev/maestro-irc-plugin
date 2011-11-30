@@ -1,13 +1,14 @@
 { 
-  "command" : "notify",
   "name" : "irc",
+  "description" : "Posts An IRC Message To The Server And Room Defined In the maestro_lucee.json File. <br>[body] Is A Required String",
   "author": "Kit Plummer",
   "version": "1.0",
-  "created_at" : "2011-08-04T18:31:28-04:00",
-  "description" : "Posts An IRC Message To The Server And Room Defined In the maestro_lucee.json File. <br>[body] Is A Required String",
-  "inputs" : "{\"body\":{\"required\":true,\"type\":\"String\",\"value\":\"\"}}",
-  "outputs" : "{\"output\":{\"type\":\"String\",\"value\":\"\"}}",
-  "type" : "irc",
-  "tool_name":"Notification",
-  "updated_at" : "2011-08-04T18:31:28-04:00"
+  "class": "Maestro::IrcParticipant",
+  "type":"ruby",
+  "task":{
+    "command" : "notify",    
+    "inputs" : "{\"body\":{\"required\":true,\"type\":\"String\",\"value\":\"\"}}",
+    "outputs" : "{\"output\":{\"type\":\"String\",\"value\":\"\"}}",
+    "tool_name":"Notification"
+  }
 }
