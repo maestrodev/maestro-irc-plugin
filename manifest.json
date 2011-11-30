@@ -6,7 +6,7 @@
   "class": "Maestro::IrcParticipant",
   "type":"ruby",
   "task":{
-    "command" : "notify",    
+    "command" : "/irc/notify",    
     "inputs" : "{\"body\":{\"required\":true,\"type\":\"String\",\"value\":\"\"}}",
     "outputs" : "{\"output\":{\"type\":\"String\",\"value\":\"\"}}",
     "tool_name":"Notification"
