@@ -5,6 +5,13 @@
   "version": "1.0",
   "class": "MaestroWorker::SayParticipant",
   "type":"ruby",
+  "dependencies":[
+		{
+			"name" : "isaac",
+			"version" : "0.2.6",
+			"source" : "http://rubygems.org/"
+		}
+	],
   "task":{
     "command" : "/say/say",    
     "inputs" : "{}",
