@@ -1,14 +1,14 @@
 { 
-  "name" : "irc",
-  "description" : "Posts An IRC Message To The Server And Room Defined In the maestro_lucee.json File. <br>[body] Is A Required String",
+  "name" : "say",
+  "description" : "Say Hello To My Little Friend!",
   "author": "Kit Plummer",
   "version": "1.0",
-  "class": "Maestro::IrcParticipant",
+  "class": "MaestroWorker::SayParticipant",
   "type":"ruby",
   "task":{
-    "command" : "/irc/notify",    
-    "inputs" : "{\"body\":{\"required\":true,\"type\":\"String\",\"value\":\"\"}}",
-    "outputs" : "{\"output\":{\"type\":\"String\",\"value\":\"\"}}",
+    "command" : "/say/say",    
+    "inputs" : "{}",
+    "outputs" : "{}",
     "tool_name":"Notification"
   }
 }
