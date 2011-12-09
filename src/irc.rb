@@ -1,6 +1,7 @@
 # Copyright 2011© MaestroDev.  All rights reserved.
 
 require 'uuid'
+require 'isaac/bot'
 
 module Maestro
   class Irc
