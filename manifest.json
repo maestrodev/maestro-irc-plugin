@@ -1,9 +1,25 @@
-{ 
+[{ 
   "name" : "say",
   "description" : "Say Hello To My Little Friend!",
   "author": "Kit Plummer",
   "version": "1.0",
   "class": "MaestroWorker::SayParticipant",
+  "type":"ruby",
+  "dependencies":[
+	],
+  "task":{
+    "command" : "/say/say",    
+    "inputs" : {},
+    "outputs" : {},
+    "tool_name":"Notification"
+  }
+},
+{ 
+  "name" : "irc",
+  "description" : "IRC Client Logging",
+  "author": "Kit Plummer",
+  "version": "1.0",
+  "class": "MaestroWorker::IrcParticipant",
   "type":"ruby",
   "dependencies":[
 		{
@@ -13,9 +29,9 @@
 		}
 	],
   "task":{
-    "command" : "/say/say",    
-    "inputs" : "{}",
-    "outputs" : "{}",
+    "command" : "/irc/notify",    
+    "inputs" : {"body" : {"value" : "", "type" : "String", "required" : "true"}},
+    "outputs" : {},
     "tool_name":"Notification"
   }
-}
+}]
