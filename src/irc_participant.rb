@@ -23,7 +23,7 @@ module MaestroWorker
       end
     end
 
-    def work
+    def notify
       begin
         MaestroWorker.log.info "Posting Message To IRC"
         workitem.fields['output']=''
