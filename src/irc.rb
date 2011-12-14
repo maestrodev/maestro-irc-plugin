@@ -54,12 +54,6 @@ module MaestroWorker
       end
     end
     
-    def close
-      @@bot.quite
-      @@connected = false
-      @@bot = nil      
-    end
-    
     def connected?
       @@connected
     end
@@ -88,7 +82,12 @@ module MaestroWorker
         
         @@irc
       end
-              
+      
+      def close
+        @@bot.quite
+        @@connected = false
+        @@bot = nil      
+      end              
     end
   end
   
