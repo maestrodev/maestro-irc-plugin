@@ -3,7 +3,7 @@
 require 'uuid'
 require 'isaac/bot'
 
-module Maestro
+module MaestroWorker
   class Irc
     
     @@irc = nil
