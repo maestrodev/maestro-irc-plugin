@@ -24,7 +24,7 @@ module MaestroWorker
           
             # config = Maestro.irc_config
             # create a "random" nick so we don't have to worry about handling names
-            c.nick = config['nickname'] +UUID.new.generate
+            c.nick = "#{config['nickname']}-#{UUID.new.generate}"
             c.server = config['server']
             c.password = config['password']
             c.ssl = !config['ssl'].match(/true/).nil?

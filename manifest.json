@@ -33,7 +33,7 @@
     "inputs" : {"body" : {"value" : "", "type" : "String", "required" : "true"},
 		"nickname":{"value" : "", "type" : "String", "required" : "true"},
 		"server":{"value" : "", "type" : "String", "required" : "true"},
-		"password":{"value" : "", "type" : "Password", "required" : "true"},
+		"password":{"value" : "", "type" : "Password", "required" : "false"},
 		"ssl":{"value" : "", "type" : "Boolean", "required" : "true"},
 		"port":{"value" : "", "type" : "Integer", "required" : "true"},
 		"channel":{"value" : "", "type" : "String", "required" : "true"}															
