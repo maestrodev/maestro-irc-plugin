@@ -89,7 +89,6 @@ module MaestroWorker
       def close
         @@irc.bot.quit
         @@connected = false
-        @@irc.bot = nil      
         @@irc = nil
       end              
     end
