@@ -27,7 +27,7 @@ module MaestroWorker
             c.nick = config['nickname'] +UUID.new.generate
             c.server = config['server']
             c.password = config['password']
-            c.ssl = config['ssl']
+            c.ssl = !config['ssl'].match(/true/).nil?
             c.port = config['port']
           
           end
