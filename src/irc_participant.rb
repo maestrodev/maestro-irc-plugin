@@ -25,6 +25,10 @@ module MaestroWorker
       end
     end
 
+    def body
+      workitem['fields']['body']
+    end
+
     def notify
       begin
         MaestroWorker.log.info "Posting Message To IRC"
