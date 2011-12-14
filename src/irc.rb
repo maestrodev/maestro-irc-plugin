@@ -22,18 +22,18 @@ module MaestroWorker
 
           configure do |c|
           
-            config = Maestro.irc_config
+            # config = Maestro.irc_config
             # create a "random" nick so we don't have to worry about handling names
-            c.nick = config['nick'] + "-" +UUID.new.generate
-            c.server = config['host']
-            c.password = config['pass']
-            c.ssl = config['ssl']
-            c.port = config['port']
+            c.nick = ("Maestro_") + "-" +UUID.new.generate
+            c.server = "irc.freenode.net"
+            c.password = ""
+            c.ssl = false
+            c.port = 6667
           
           end
 
           on :connect do
-            @@chan = Maestro.irc_config['chan']
+            @@chan = "#kittest"
             join @@chan
             @@connected = true
           end
@@ -48,7 +48,7 @@ module MaestroWorker
         begin
           @bot.start
         rescue Exception
-          Maestro.log.info "Closed IRC connection to #{@bot.host}"
+          MaestroWorker.log.info "Closed IRC connection to #{@bot.host}"
         end  
         
       end
@@ -72,7 +72,7 @@ module MaestroWorker
         end
         thread.join
       rescue Exception
-        Maestro.log.error "Error sending message to IRC"
+        MaestroWorker.log.error "Error sending message to IRC"
       end
     end    
     
