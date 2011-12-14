@@ -78,15 +78,14 @@ module MaestroWorker
     
     class << self
       def bot(config = {})
-        @@irc = Irc.new(config) if @@irc.nil?
-        
+        @@irc = Irc.new(config) if @@irc.nil?        
         @@irc
       end
       
       def close
-        @@bot.quite
+        @@irc.quit
         @@connected = false
-        @@bot = nil      
+        @@irc = nil      
       end              
     end
   end
