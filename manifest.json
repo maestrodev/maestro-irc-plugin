@@ -30,7 +30,14 @@
 	],
   "task":{
     "command" : "/irc/notify",    
-    "inputs" : {"body" : {"value" : "", "type" : "String", "required" : "true"}},
+    "inputs" : {"body" : {"value" : "", "type" : "String", "required" : "true"},
+		"nickname":{"value" : "", "type" : "String", "required" : "true"},
+		"server":{"value" : "", "type" : "String", "required" : "true"},
+		"password":{"value" : "", "type" : "Password", "required" : "true"},
+		"ssl":{"value" : "", "type" : "Boolean", "required" : "true"},
+		"port":{"value" : "", "type" : "Integer", "required" : "true"},
+		"channel":{"value" : "", "type" : "String", "required" : "true"}															
+	},
     "outputs" : {},
     "tool_name":"Notification"
   }
