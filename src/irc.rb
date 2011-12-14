@@ -12,7 +12,7 @@ module MaestroWorker
     
     @bot = nil
     
-    def initialize
+    def initialize(config)
       @@connected = false
       
       @semaphore = Mutex.new
@@ -24,16 +24,16 @@ module MaestroWorker
           
             # config = Maestro.irc_config
             # create a "random" nick so we don't have to worry about handling names
-            c.nick = ("Maestro_") + "-" +UUID.new.generate
-            c.server = "irc.freenode.net"
-            c.password = ""
-            c.ssl = false
-            c.port = 6667
+            c.nick = config['nickname'] +UUID.new.generate
+            c.server = config['server']
+            c.password = config['password']
+            c.ssl = config['ssl']
+            c.port = config['port']
           
           end
 
           on :connect do
-            @@chan = "#kittest"
+            @@chan = config['channel']
             join @@chan
             @@connected = true
           end
