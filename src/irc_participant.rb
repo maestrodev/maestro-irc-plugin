@@ -38,7 +38,7 @@ module MaestroWorker
           MaestroWorker::Irc.bot(workitem['fields']).message line if !line.gsub(/\s*/, '').empty?
         end
 
-        MaestroWorker::Irc.bot.quit("#{workitem['fields']['nickname']} Out.")
+        MaestroWorker::Irc.close
         
         # workitem['fields']['output']=("Posted Messages #{lines.join(' ')}")
         write_output("Posted Messages #{lines.join(' ')}")
