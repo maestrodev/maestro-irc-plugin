@@ -1,5 +1,7 @@
 # Copyright 2011© MaestroDev.  All rights reserved.
 
+require 'irc'
+
 module MaestroWorker
   class IrcParticipant < MaestroWorker::RuotePseudoParticipant
           
