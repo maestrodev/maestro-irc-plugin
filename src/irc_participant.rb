@@ -8,7 +8,7 @@ module MaestroWorker
     def lines
       
       begin
-        url = workitem.fields["url"]
+        url = workitem['fields']["url"]
         MaestroWorker.log.debug("Attempting To Load IRC Template From #{url}")
         begin
         template = File.open(url)
@@ -28,22 +28,22 @@ module MaestroWorker
     def notify
       begin
         MaestroWorker.log.info "Posting Message To IRC"
-        workitem.fields['output']=''
+        workitem['fields']['output']=''
         lines.each do |line|
           MaestroWorker.log.debug "Sending Line #{line}" if !line.gsub(/\s*/, '').empty?
           MaestroWorker::Irc.bot.message line if !line.gsub(/\s*/, '').empty?
         end
 
-        # workitem.fields['output']=("Posted Messages #{lines.join(' ')}")
+        # workitem['fields']['output']=("Posted Messages #{lines.join(' ')}")
         write_output("Posted Messages #{lines.join(' ')}")
 
         MaestroWorker.log.info "Completed Posting Message To IRC"
       rescue RuntimeError => e
         MaestroWorker.log.error "ERROR: Failed to shout to IRC - #{e}"
-        workitem.fields['__error__'] = "ERROR: Failed to shout to IRC - #{e}"
+        workitem['fields']['__error__'] = "ERROR: Failed to shout to IRC - #{e}"
         return
       end
-      workitem.fields['__error__'] = ''
+      workitem['fields']['__error__'] = ''
       
     end
   end
