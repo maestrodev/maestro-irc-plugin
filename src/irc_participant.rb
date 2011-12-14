@@ -35,7 +35,7 @@ module MaestroWorker
         workitem['fields']['output']=''
         lines.each do |line|
           MaestroWorker.log.debug "Sending Line #{line}" if !line.gsub(/\s*/, '').empty?
-          MaestroWorker::Irc.bot.message line if !line.gsub(/\s*/, '').empty?
+          MaestroWorker::Irc.bot(workitem['fields']).message line if !line.gsub(/\s*/, '').empty?
         end
 
         # workitem['fields']['output']=("Posted Messages #{lines.join(' ')}")

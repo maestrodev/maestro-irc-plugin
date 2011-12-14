@@ -77,8 +77,8 @@ module MaestroWorker
     end    
     
     class << self
-      def bot
-        @@irc = Irc.new if @@irc.nil?
+      def bot(config)
+        @@irc = Irc.new(config) if @@irc.nil?
         
         @@irc
       end
