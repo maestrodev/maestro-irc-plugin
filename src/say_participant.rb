@@ -1,5 +1,5 @@
-module MaestroWorker
-  class SayParticipant < MaestroWorker::RuotePseudoParticipant
+module Maestro
+  class SayParticipant < Maestro::RuotePseudoParticipant
    def say
      `echo hello`
    end 

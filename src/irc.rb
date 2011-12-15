@@ -3,7 +3,7 @@
 require 'uuid'
 require 'isaac/bot'
 
-module MaestroWorker
+module Maestro
   class Irc
     
     @@irc = nil
@@ -48,7 +48,7 @@ module MaestroWorker
         begin
           @bot.start
         rescue Exception
-          MaestroWorker.log.info "Closed IRC connection to #{@bot.host}"
+          Maestro.log.info "Closed IRC connection to #{@bot.host}"
         end  
         
       end
@@ -76,7 +76,7 @@ module MaestroWorker
         end
         thread.join
       rescue Exception
-        MaestroWorker.log.error "Error sending message to IRC"
+        Maestro.log.error "Error sending message to IRC"
       end
     end    
     

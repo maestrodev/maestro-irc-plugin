@@ -3,7 +3,7 @@
   "description" : "Say Hello To My Little Friend!",
   "author": "Kit Plummer",
   "version": "1.0",
-  "class": "MaestroWorker::SayParticipant",
+  "class": "Maestro::SayParticipant",
   "type":"ruby",
   "dependencies":[
 	],
@@ -19,7 +19,7 @@
   "description" : "IRC Client Logging",
   "author": "Kit Plummer",
   "version": "1.0",
-  "class": "MaestroWorker::IrcParticipant",
+  "class": "Maestro::IrcParticipant",
   "type":"ruby",
   "dependencies":[
 		{
