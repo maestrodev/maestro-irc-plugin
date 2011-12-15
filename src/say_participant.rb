@@ -1,7 +1,7 @@
 module MaestroWorker
   class SayParticipant < MaestroWorker::RuotePseudoParticipant
    def say
-     `say hello`
+     `echo hello`
    end 
   end
 end
