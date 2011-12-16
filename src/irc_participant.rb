@@ -3,7 +3,7 @@
 require 'irc'
 
 module Maestro
-  class IrcParticipant < Maestro::RuotePseudoParticipant
+  class IrcParticipant < Maestro::MaestroWorker
           
     def lines
       
