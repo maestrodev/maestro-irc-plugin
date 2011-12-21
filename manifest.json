@@ -44,7 +44,7 @@
 },
 { 
   "name" : "irc (java)",
-  "description" : "IRC Client Logging",
+  "description" : "IRC Client Logging Written In Java",
   "author": "Kit Plummer",
   "version": "1.0",
   "class": "com.maestrodev.IrcWorker",
