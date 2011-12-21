@@ -50,9 +50,12 @@
   "class": "com.maestrodev.IrcWorker",
   "type":"java",
   "dependencies":[
-  {
-	  "name":"maestro-irc-plugin-1.0-SNAPSHOT"
-  }
+  	{
+		  "name":"maestro-irc-plugin-1.0-SNAPSHOT.jar"
+	  },
+    {
+      "name":"pom.xml"
+    }
   ],
   "task":{
     "command" : "/irc/postMessage",    
