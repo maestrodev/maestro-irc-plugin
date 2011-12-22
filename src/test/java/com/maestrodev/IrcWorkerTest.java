@@ -57,13 +57,7 @@ public class IrcWorkerTest
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
-        
-        HashMap stompConfig = new HashMap();
-        stompConfig.put("host", "localhost");
-        stompConfig.put("port", "61619");
-        stompConfig.put("queue", "/queue/test");
-        
-        ircWorker.setStompConfig(stompConfig);
+               
         
         for(Object key : ircWorker.getWorkitem().keySet()){
             System.out.println(key);

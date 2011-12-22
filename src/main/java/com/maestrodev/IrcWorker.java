@@ -1,6 +1,5 @@
 package com.maestrodev;
 
-import java.io.IOException;
 import org.schwering.irc.lib.IRCConnection;
 import org.schwering.irc.lib.IRCEventListener;
 import org.schwering.irc.lib.IRCModeParser;

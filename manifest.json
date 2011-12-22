@@ -70,4 +70,27 @@
     "outputs" : {},
     "tool_name":"Notification"
   }
-}]
+},
+{ 
+  "name" : "say (java)",
+  "description" : "Do Some Fancy TTS Written In Java",
+  "author": "Kit Plummer",
+  "version": "1.0",
+  "class": "com.maestrodev.SayWorker",
+  "type":"java",
+  "dependencies":[
+  	{
+		  "name":"maestro-irc-plugin-1.0-SNAPSHOT.jar"
+	  },
+    {
+      "name":"pom.xml"
+    }
+  ],
+  "task":{
+    "command" : "/say/say",    
+    "inputs" : {"body" : {"value" : "", "type" : "String", "required" : "true"}}															
+	},
+    "outputs" : {},
+    "tool_name":"Notification"
+  }
+]
