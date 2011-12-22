@@ -49,6 +49,7 @@ public class IrcWorker extends MaestroWorker
          while(!messageSent){
             Thread.sleep(5000);
          }
+         conn.close();
     }    
     
     private class IrcEventListener implements IRCEventListener {
