@@ -19,7 +19,6 @@ public class SayWorker extends MaestroWorker {
 
     public SayWorker() {
         super();
-        listAllVoices();
         setup();
     }
 
