@@ -18,7 +18,7 @@
   "name" : "irc",
   "description" : "IRC Client Logging",
   "author": "Kit Plummer",
-  "version": "1.0",
+  "version": "1.1",
   "class": "Maestro::IrcParticipant",
   "type":"ruby",
   "dependencies":[

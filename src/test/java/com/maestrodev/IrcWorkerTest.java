@@ -31,14 +31,7 @@ public class IrcWorkerTest
     {
         return new TestSuite( IrcWorkerTest.class );
     }
-//     {"body" : {"value" : "", "type" : "String", "required" : "true"},
-//		"nickname":{"value" : "", "type" : "String", "required" : "true"},
-//		"server":{"value" : "", "type" : "String", "required" : "true"},
-//		"password":{"value" : "", "type" : "Password", "required" : "false"},
-//		"ssl":{"value" : "", "type" : "Boolean", "required" : "true"},
-//		"port":{"value" : "", "type" : "Integer", "required" : "true"},
-//		"channel":{"value" : "", "type" : "String", "required" : "true"}
-
+    
     /**
      * Test IrcWorker
      */
@@ -46,7 +39,7 @@ public class IrcWorkerTest
     {
         IrcWorker ircWorker = new IrcWorker();
         JSONObject fields = new JSONObject();
-        fields.put("body", "Hello From Javaland!");
+        fields.put("body", "Hello From Maestro 4!");
         fields.put("nickname", "irc-plugin-test");        
         fields.put("server", "irc.freenode.net");
         fields.put("password", null);
@@ -58,10 +51,6 @@ public class IrcWorkerTest
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
                
-        
-        for(Object key : ircWorker.getWorkitem().keySet()){
-            System.out.println(key);
-        }
         
         Method method = ircWorker.getClass().getMethod("postMessage");
         method.invoke(ircWorker);
