@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns       = "http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.maestrodev</groupId>
   <artifactId>maestro-irc-plugin</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
 
   <name>maestro-irc-plugin</name>
   <url>http://maven.apache.org</url>
@@ -13,6 +12,17 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>maestro-deploy</id>
+      <url>https://repo.maestrodev.com/archiva/repository/com.maestrodev.lucee.releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maestro-deploy</id>
+      <url>https://repo.maestrodev.com/archiva/repository/com.maestrodev.lucee.snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -38,4 +48,148 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+          <execution>
+            <id>copy-source</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin/src</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>src</directory>
+                </resource>                
+              </resources>              
+            </configuration>            
+          </execution>
+          <execution>
+            <id>copy-jars</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin/jars</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/target/</directory>
+                  <include>*.jar</include>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-lib</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin/lib</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>lib</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-config</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin/config</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>config</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-vendor</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin/vendor</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>vendor</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-files</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/maestro-irc-plugin</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <include>Gemfile</include>
+                  <include>Gemfile.lock</include>
+                  <include>manifest.json</include>
+                  <include>README</include>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2.2</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/zip.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id> <!-- this is used for inheritance merges -->
+            <phase>package</phase> <!-- append to the packaging phase. -->
+            <goals>
+              <goal>single</goal> <!-- goals == mojos -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <groupId>${project.groupId}</groupId>
+          <artifactId>${project.artifactId}</artifactId>
+          <version>${project.version}</version>
+          <url>${repository.url}</url>
+          <file>${basedir}/target/maestro-irc-plugin-${project.version}-bin.zip</file>
+          <uniqueVersion>true</uniqueVersion>
+          <packaging>zip</packaging>
+          <repositoryId>maestro-deploy</repositoryId>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
