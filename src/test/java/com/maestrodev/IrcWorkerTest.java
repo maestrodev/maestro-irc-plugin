@@ -39,7 +39,7 @@ public class IrcWorkerTest
     {
         IrcWorker ircWorker = new IrcWorker();
         JSONObject fields = new JSONObject();
-        fields.put("body", "Hello From Maestro 4!\nGoodbye from Maestro4\rI am lost...");
+        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
         fields.put("nickname", "irc-plugin-test");        
         fields.put("server", "irc.freenode.net");
         fields.put("password", null);

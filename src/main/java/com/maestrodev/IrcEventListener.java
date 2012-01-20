@@ -19,7 +19,7 @@ class IrcEventListener implements IRCEventListener {
         
         public IrcEventListener(IRCConnection connection, String channel, String body){
             this.connection = connection;			
-            this.body = body.split("\\r?\\n");
+            this.body = body.split("[\n\r]");
             this.channel = channel;
         }
             
