@@ -57,12 +57,12 @@
           <execution>
             <id>copy-source</id>
             <!-- here the phase you need -->
-            <phase>validate</phase>
+            <phase>package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin/src</outputDirectory>
+              <outputDirectory>${basedir}/maestro-irc-plugin-${project.version}-bin/src</outputDirectory>
               <resources>          
                 <resource>
                   <directory>src</directory>
@@ -73,12 +73,12 @@
           <execution>
             <id>copy-jars</id>
             <!-- here the phase you need -->
-            <phase>validate</phase>
+            <phase>package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin/jars</outputDirectory>
+              <outputDirectory>${basedir}/maestro-irc-plugin-${project.version}-bin/jars</outputDirectory>
               <resources>
                 <resource>
                   <directory>${basedir}/target/</directory>
@@ -90,12 +90,12 @@
           <execution>
             <id>copy-lib</id>
             <!-- here the phase you need -->
-            <phase>validate</phase>
+            <phase>package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin/lib</outputDirectory>
+              <outputDirectory>${basedir}/maestro-irc-plugin-${project.version}-bin/lib</outputDirectory>
               <resources>
                 <resource>
                   <directory>lib</directory>
@@ -106,12 +106,12 @@
           <execution>
             <id>copy-config</id>
             <!-- here the phase you need -->
-            <phase>validate</phase>
+            <phase>package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin/config</outputDirectory>
+              <outputDirectory>${basedir}/maestro-irc-plugin-${project.version}-bin/config</outputDirectory>
               <resources>
                 <resource>
                   <directory>config</directory>
@@ -120,30 +120,14 @@
             </configuration>
           </execution>
           <execution>
-            <id>copy-vendor</id>
-            <!-- here the phase you need -->
-            <phase>validate</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin/vendor</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>vendor</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
             <id>copy-files</id>
             <!-- here the phase you need -->
-            <phase>validate</phase>
+            <phase>package</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/maestro-irc-plugin</outputDirectory>
+              <outputDirectory>${basedir}/maestro-irc-plugin-${project.version}-bin</outputDirectory>
               <resources>
                 <resource>
                   <directory>${basedir}</directory>
@@ -151,6 +135,7 @@
                   <include>Gemfile.lock</include>
                   <include>manifest.json</include>
                   <include>README</include>
+                  <include>pom.xml</include>
                 </resource>
               </resources>
             </configuration>
