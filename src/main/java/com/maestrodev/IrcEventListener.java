@@ -14,12 +14,12 @@ class IrcEventListener implements IRCEventListener {
         
         private IRCConnection connection;
         private boolean messageSent;
-        private String body, channel;
+        private String body[], channel;
         
         
         public IrcEventListener(IRCConnection connection, String channel, String body){
-            this.connection = connection;
-            this.body = body;
+            this.connection = connection;			
+            this.body = body.split("\\r?\\n");
             this.channel = channel;
         }
             
@@ -49,7 +49,9 @@ class IrcEventListener implements IRCEventListener {
         }
 
         public void onJoin(String string, IRCUser ircu) {
-            connection.doPrivmsg(channel, body);
+			for(String line : body) {
+            	connection.doPrivmsg(channel, line);
+			}
             messageSent = true;
         }
 
