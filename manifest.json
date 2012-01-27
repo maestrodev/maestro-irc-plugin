@@ -26,4 +26,33 @@
     "outputs" : {},
     "tool_name":"Notification"
   }
+},
+{ 
+  "name" : "irc confirmation (java)",
+  "description" : "Posts an IRC message and waits for confirmation(nickname: [yes|no])",
+  "author": "Kit Plummer",
+  "version": "1.0",
+  "class": "com.maestrodev.IrcWorker",
+  "type":"java",
+  "dependencies":[
+  	{
+		  "name":"maestro-irc-plugin-1.0-SNAPSHOT.jar"
+	  },
+    {
+      "name":"pom.xml"
+    }
+  ],
+  "task":{
+    "command" : "/irc/postMessageAndWaitForConfirmation",    
+    "inputs" : {"body" : {"value" : "", "type" : "String", "required" : true},
+		"nickname":{"value" : "", "type" : "String", "required" : false},
+		"server":{"value" : "", "type" : "String", "required" : true},
+		"password":{"value" : "", "type" : "Password", "required" : false},
+		"ssl":{"value" : "", "type" : "Boolean", "required" : false},
+		"port":{"value" : "", "type" : "Integer", "required" : true},
+		"channel":{"value" : "", "type" : "String", "required" : true}															
+	},
+    "outputs" : {},
+    "tool_name":"Action"
+  }
 }]

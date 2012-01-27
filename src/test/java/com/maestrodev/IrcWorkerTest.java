@@ -2,7 +2,6 @@ package com.maestrodev;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -32,17 +31,17 @@ public class IrcWorkerTest
         return new TestSuite( IrcWorkerTest.class );
     }
     
-    /**
+    /**x
      * Test IrcWorker
      */
-    public void testIrcWorker() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    public void testPostMessage() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
     {
         IrcWorker ircWorker = new IrcWorker();
         JSONObject fields = new JSONObject();
         fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
         fields.put("nickname", "irc-plugin-test");        
         fields.put("server", "irc.freenode.net");
-        fields.put("password", null);
+        fields.put("password", "");
         fields.put("ssl", "false");
         fields.put("port", "6667");
         fields.put("channel", "#kittest");        
@@ -51,9 +50,32 @@ public class IrcWorkerTest
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
                
-        
         Method method = ircWorker.getClass().getMethod("postMessage");
         method.invoke(ircWorker);
+    }
+    
+     /**
+     * Test IrcWorker
+     */
+    public void testPostMessageAndWaitForConfirmation() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    {
+        IrcWorker ircWorker = new IrcWorker();
+        JSONObject fields = new JSONObject();
+        fields.put("body", "Something Happened Would You like to proceed?");
+        fields.put("nickname", "irc-plugin-test2");        
+        fields.put("server", "irc.freenode.net");
+        fields.put("password", null);
+        fields.put("ssl", "false");
+        fields.put("port", "6667");
+        fields.put("channel", "#kittest");
+        
+        JSONObject workitem = new JSONObject();
+        workitem.put("fields", fields);
+        ircWorker.setWorkitem(workitem);
+               
+        
+        Method method = ircWorker.getClass().getMethod("postMessageAndWaitForConfirmation");
+        assertNotNull(method);
         
     }
 }
