@@ -44,7 +44,8 @@ public class IrcWorkerTest
         fields.put("password", "");
         fields.put("ssl", "false");
         fields.put("port", "6667");
-        fields.put("channel", "#kittest");        
+        fields.put("channel", "#kittest");
+        fields.put("ignore_failure", "false");
         
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);
@@ -52,8 +53,61 @@ public class IrcWorkerTest
                
         Method method = ircWorker.getClass().getMethod("postMessage");
         method.invoke(ircWorker);
+        
+        assertNull(ircWorker.getField("__error__"));
     }
     
+         /**
+     * Test IrcWorker
+     */
+    public void testIgnoreFailureOnFailure() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    {
+        
+        IrcWorker ircWorker = new IrcWorker();
+        JSONObject fields = new JSONObject();
+        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
+        fields.put("nickname", "irc-plugin-test");        
+        fields.put("server", "not.real.com");
+        fields.put("password", "");
+        fields.put("ssl", "false");
+        fields.put("port", "6667");
+        fields.put("channel", "#kittest");
+        fields.put("ignore_failure", "true");
+        
+        JSONObject workitem = new JSONObject();
+        workitem.put("fields", fields);
+        ircWorker.setWorkitem(workitem);
+               
+        Method method = ircWorker.getClass().getMethod("postMessage");
+        method.invoke(ircWorker);
+        
+        assertNull(ircWorker.getField("__error__"));
+    }
+    
+    
+    public void testDontIgnoreFailureOnFailure() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+    {
+        
+        IrcWorker ircWorker = new IrcWorker();
+        JSONObject fields = new JSONObject();
+        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
+        fields.put("nickname", "irc-plugin-test");        
+        fields.put("server", "not.real.com");
+        fields.put("password", "");
+        fields.put("ssl", "false");
+        fields.put("port", "6667");
+        fields.put("channel", "#kittest");
+        fields.put("ignore_failure", "false");
+        
+        JSONObject workitem = new JSONObject();
+        workitem.put("fields", fields);
+        ircWorker.setWorkitem(workitem);
+               
+        Method method = ircWorker.getClass().getMethod("postMessage");
+        method.invoke(ircWorker);
+        
+        assertNotNull(ircWorker.getField("__error__"));
+    }
      /**
      * Test IrcWorker
      */
@@ -68,6 +122,8 @@ public class IrcWorkerTest
         fields.put("ssl", "false");
         fields.put("port", "6667");
         fields.put("channel", "#kittest");
+        fields.put("ignore_failure", "false");
+        
         
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);

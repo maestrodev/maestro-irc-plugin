@@ -62,7 +62,11 @@ public class IrcWorker extends MaestroWorker {
             writeOutput("Message " + getField("body") + " Sent");
             
         } catch (Exception e){
-            setError("Error Posting Message " + e.getMessage());
+            if(this.getField("ignore_failure").toString().equals("false"))
+                setError("Error Posting Message " + e.getMessage());
+            else {
+                this.writeOutput("Error Posting Message " + e.getMessage());
+            }
         }
     }
 
@@ -156,7 +160,11 @@ public class IrcWorker extends MaestroWorker {
             }
             
         } catch (Exception e){
-            setError("Error Posting Message " + e.getMessage());
+            if(this.getField("ignore_failure").toString().equals("false"))
+                setError("Error Posting Message " + e.getMessage());
+            else {
+                this.writeOutput("Error Posting Message " + e.getMessage());
+            }
         }
     }
 }
