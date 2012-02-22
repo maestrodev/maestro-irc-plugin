@@ -2,18 +2,24 @@
   xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.maestrodev</groupId>
+  <!-- Note that the execution environment for LuCEE agents needs access to this POM, we need to ship it all to avoid needing to run this remotely -->
+  <parent>
+    <groupId>com.maestrodev</groupId>
+    <artifactId>maestrodev</artifactId>
+    <version>1</version>
+  </parent>
+
   <artifactId>maestro-irc-plugin</artifactId>
   <version>1.1-SNAPSHOT</version>
 
   <name>maestro-irc-plugin</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <slf4j.version>1.5.8</slf4j.version>
   </properties>
 
+  <!-- TODO: should just use the one from parent, but we need to consolidate-->
   <distributionManagement>
     <repository>
       <id>maestro-deploy</id>
@@ -25,6 +31,7 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <!-- TODO: move as much as possible of below to a "plugin parent" POM to reduce what we need to ship across -->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
