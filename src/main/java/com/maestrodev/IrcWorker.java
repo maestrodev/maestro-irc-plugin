@@ -45,9 +45,8 @@ public class IrcWorker extends MaestroWorker {
             }
             
             if(eventListener.wasError()){
-                setError(eventListener.getError());
                 conn.doQuit();
-                return;
+                throw new Exception(eventListener.getError());
             }
             
             
@@ -66,6 +65,7 @@ public class IrcWorker extends MaestroWorker {
                 setError("Error Posting Message " + e.getMessage());
             else {
                 this.writeOutput("Error Posting Message " + e.getMessage());
+                this.writeOutput("\nIgnore Flag Is True, Composition Will Continue");
             }
         }
     }
@@ -95,8 +95,8 @@ public class IrcWorker extends MaestroWorker {
             }
             
             if(eventListener.wasError()){
-                setError(eventListener.getError());
-                return;
+                conn.doQuit();
+                throw new Exception(eventListener.getError());
             }
             
             writeOutput("Message " + getField("body") + " Sent");
@@ -164,6 +164,7 @@ public class IrcWorker extends MaestroWorker {
                 setError("Error Posting Message " + e.getMessage());
             else {
                 this.writeOutput("Error Posting Message " + e.getMessage());
+                this.writeOutput("\nIgnore Flag Is True, Composition Will Continue");                
             }
         }
     }

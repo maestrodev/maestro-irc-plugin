@@ -57,6 +57,7 @@ public class IrcWorkerTest
         assertNull(ircWorker.getField("__error__"));
     }
     
+    
          /**
      * Test IrcWorker
      */
