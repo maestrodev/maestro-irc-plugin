@@ -8,7 +8,7 @@
 	<fileSets>
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
-			<directory>maestro-irc-plugin-${project.version}-bin</directory>
+			<directory>target/scratch/maestro-irc-plugin-${project.version}-bin</directory>
 		</fileSet>
 	</fileSets>
 </assembly>

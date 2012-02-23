@@ -2,12 +2,12 @@
         "name" : "irc (java)",
         "description" : "IRC Client Logging",
         "author": "Kit Plummer",
-        "version": "1.1-SNAPSHOT",
+        "version": "$VERSION$",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
             {
-                "name":"maestro-irc-plugin-1.1-SNAPSHOT.jar"
+                "name":"maestro-irc-plugin-$VERSION$.jar"
             },
             {
                 "name":"pom.xml"
@@ -32,12 +32,12 @@
         "name" : "irc confirmation (java)",
         "description" : "Posts an IRC message and waits for confirmation(nickname: [yes|no])",
         "author": "Kit Plummer",
-        "version": "1.1-SNAPSHOT",
+        "version": "$VERSION$",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
             {
-                "name":"maestro-irc-plugin-1.1-SNAPSHOT.jar"
+                "name":"maestro-irc-plugin-$VERSION$.jar"
             },
             {
                 "name":"pom.xml"
