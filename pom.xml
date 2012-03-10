@@ -167,8 +167,6 @@
               <resources>
                 <resource>
                   <directory>${basedir}</directory>
-                  <include>Gemfile</include>
-                  <include>Gemfile.lock</include>
                   <include>manifest.json</include>
                   <include>README</include>
                   <include>pom.xml</include>
