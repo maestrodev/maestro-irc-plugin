@@ -66,6 +66,26 @@
   </dependencies>
   <build>
     <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.4</version>
+            <executions>
+            <execution>
+                <id>copy</id>
+                <phase>prepare-package</phase>
+                <goals>
+                <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                <outputDirectory>${basedir}/jars</outputDirectory>
+                <overWriteReleases>false</overWriteReleases>
+                <overWriteSnapshots>true</overWriteSnapshots>
+                <excludeTransitive>false</excludeTransitive>
+                </configuration>
+            </execution>
+            </executions>
+        </plugin> 
        <plugin>
            <groupId>com.google.code.maven-replacer-plugin</groupId>
            <artifactId>maven-replacer-plugin</artifactId>
@@ -107,7 +127,7 @@
             </configuration>            
           </execution>
           <execution>
-            <id>copy-jars</id>
+            <id>copy-jar</id>
             <!-- here the phase you need -->
             <phase>package</phase>
             <goals>
@@ -118,6 +138,23 @@
               <resources>
                 <resource>
                   <directory>${basedir}/target/</directory>
+                  <include>*.jar</include>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-jars</id>
+            <!-- here the phase you need -->
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/jars</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}/jars/</directory>
                   <include>*.jar</include>
                 </resource>
               </resources>
@@ -223,7 +260,15 @@
             </includes>
             <followSymlinks>false</followSymlinks>
             </fileset>
-            
+            <fileset>
+            <directory>${basedir}/jars</directory>
+            <includes>
+                <include>
+                    **/*.jar
+                </include>
+            </includes>
+            <followSymlinks>false</followSymlinks>
+            </fileset>
         </filesets>
         </configuration>
     </plugin>
