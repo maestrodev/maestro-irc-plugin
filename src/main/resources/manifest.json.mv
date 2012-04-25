@@ -87,6 +87,6 @@
                 "ignore_failure":{"value" : false, "type" : "Boolean", "required" : false}
             },
             "outputs" : {},
-            "tool_name":"Action"
+            "tool_name":"Actions"
         }
     }]
