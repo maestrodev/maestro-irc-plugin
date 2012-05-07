@@ -1,2 +1,5 @@
 /target/
 maestro-irc-plugin*-bin/
+/.settings/*
+/.classpath
+/.project
