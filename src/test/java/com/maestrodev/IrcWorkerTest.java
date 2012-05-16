@@ -40,7 +40,7 @@ public class IrcWorkerTest
         JSONObject fields = new JSONObject();
         fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
         fields.put("nickname", "irc-plugin-test");        
-        fields.put("server", "irc.freenode.net");
+        fields.put("host", "irc.freenode.net");
         fields.put("password", "");
         fields.put("ssl", "false");
         fields.put("port", "6667");
@@ -68,7 +68,7 @@ public class IrcWorkerTest
         JSONObject fields = new JSONObject();
         fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
         fields.put("nickname", "irc-plugin-test");        
-        fields.put("server", "not.real.com");
+        fields.put("host", "not.real.com");
         fields.put("password", "");
         fields.put("ssl", "false");
         fields.put("port", "6667");
@@ -93,7 +93,7 @@ public class IrcWorkerTest
         JSONObject fields = new JSONObject();
         fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
         fields.put("nickname", "irc-plugin-test");        
-        fields.put("server", "not.real.com");
+        fields.put("host", "not.real.com");
         fields.put("password", "");
         fields.put("ssl", "false");
         fields.put("port", "6667");
@@ -118,7 +118,7 @@ public class IrcWorkerTest
         JSONObject fields = new JSONObject();
         fields.put("body", "Something Happened Would You like to proceed?");
         fields.put("nickname", "irc-plugin-test2");        
-        fields.put("server", "irc.freenode.net");
+        fields.put("host", "irc.freenode.net");
         fields.put("password", null);
         fields.put("ssl", "false");
         fields.put("port", "6667");

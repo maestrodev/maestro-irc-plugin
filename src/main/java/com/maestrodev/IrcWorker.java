@@ -17,8 +17,14 @@ public class IrcWorker extends MaestroWorker {
     public void postMessage() throws Exception {
         try{
            
+            String host = getField("host");
+            if(host == null){
+                writeOutput("[WARNING] Field 'Server' Is Deprecated\n");
+                host = getField("server");
+            }
+            
             final IRCConnection conn = new IRCConnection(
-                    getField("server"),
+                    host,
                     Integer.parseInt(getField("port").toString()),
                     Integer.parseInt(getField("port").toString()) + 2,
                     null,
