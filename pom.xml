@@ -65,154 +65,13 @@
     </dependency>
   </dependencies>
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.4</version>
-            <executions>
-            <execution>
-                <id>copy</id>
-                <phase>prepare-package</phase>
-                <goals>
-                <goal>copy-dependencies</goal>
-                </goals>
-                <configuration>
-                <outputDirectory>${basedir}/jars</outputDirectory>
-                <overWriteReleases>false</overWriteReleases>
-                <overWriteSnapshots>true</overWriteSnapshots>
-                <excludeTransitive>false</excludeTransitive>
-                </configuration>
-            </execution>
-            </executions>
-        </plugin> 
-       <plugin>
-           <groupId>com.google.code.maven-replacer-plugin</groupId>
-           <artifactId>maven-replacer-plugin</artifactId>
-           <version>1.4.1</version>
-           <executions>                
-                <execution>
-                    <phase>prepare-package</phase>
-                    <goals>
-                        <goal>replace</goal>
-                    </goals>                    
-                </execution>
-            </executions>
-            <configuration>
-                <file>src/main/resources/manifest.json.mv</file>
-                <outputFile>manifest.json</outputFile>
-                <regex>false</regex>
-                <token>$VERSION$</token>
-                <value>${project.version}</value>
-            </configuration>
-       </plugin>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.5</version>
-        <executions>
-          <execution>
-            <id>copy-source</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/src</outputDirectory>
-              <resources>          
-                <resource>
-                  <directory>src</directory>
-                </resource>                
-              </resources>              
-            </configuration>            
-          </execution>
-          <execution>
-            <id>copy-jar</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/jars</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${basedir}/target/</directory>
-                  <include>*.jar</include>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-jars</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/jars</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${basedir}/jars/</directory>
-                  <include>*.jar</include>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-lib</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/lib</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>lib</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-config</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin/config</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>config</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-files</id>
-            <!-- here the phase you need -->
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/scratch/maestro-irc-plugin-${project.version}-bin</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${basedir}</directory>
-                  <include>manifest.json</include>
-                  <include>README</include>
-                  <include>pom.xml</include>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.2.2</version>
@@ -231,47 +90,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <groupId>${project.groupId}</groupId>
-          <artifactId>${project.artifactId}</artifactId>
-          <version>${project.version}</version>
-          <url>${repository.url}</url>
-          <file>${basedir}/target/maestro-irc-plugin-${project.version}-bin.zip</file>
-          <uniqueVersion>true</uniqueVersion>
-          <packaging>zip</packaging>
-          <repositoryId>maestro-deploy</repositoryId>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>2.4.1</version>
-        <configuration>
-        <filesets>
-            <fileset>
-            <directory>${basedir}</directory>
-            <includes>
-                <include>
-                    manifest.json
-                </include>
-            </includes>
-            <followSymlinks>false</followSymlinks>
-            </fileset>
-            <fileset>
-            <directory>${basedir}/jars</directory>
-            <includes>
-                <include>
-                    **/*.jar
-                </include>
-            </includes>
-            <followSymlinks>false</followSymlinks>
-            </fileset>
-        </filesets>
-        </configuration>
-    </plugin>
     </plugins>
   </build>
   <profiles>

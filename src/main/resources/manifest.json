@@ -2,12 +2,12 @@
         "name" : "irc (java)",
         "description" : "IRC Client Logging",
         "author": "Kit Plummer",
-        "version": "$VERSION$",
+        "version": "${project.version}",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
             {
-                "name":"maestro-irc-plugin-$VERSION$.jar",
+                "name":"maestro-irc-plugin-${project.version}.jar",
                 "name":"activemq-all-5.5.0.jar",
                 "name":"apollo-util-1.0-beta4.jar",
                 "name":"commons-lang3-3.0.jar",
@@ -48,12 +48,12 @@
         "name" : "irc confirmation (java)",
         "description" : "Posts an IRC message and waits for confirmation(nickname: [yes|no])",
         "author": "Kit Plummer",
-        "version": "$VERSION$",
+        "version": "${project.version}",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
             {
-                "name":"maestro-irc-plugin-$VERSION$.jar",
+                "name":"maestro-irc-plugin-${project.version}.jar",
                 "name":"activemq-all-5.5.0.jar",
                 "name":"apollo-util-1.0-beta4.jar",
                 "name":"commons-lang3-3.0.jar",
