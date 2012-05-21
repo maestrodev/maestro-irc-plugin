@@ -19,6 +19,10 @@
 
   <name>maestro-irc-plugin</name>
 
+  <scm>
+    <developerConnection>scm:git:git@github.com:maestrodev/maestro-irc-plugin.git</developerConnection>
+    <connection>scm:git:git@github.com:maestrodev/maestro-irc-plugin.git</connection>
+  </scm>
   
 
   <!-- TODO: should just use the one from parent, but we need to consolidate-->
@@ -89,6 +93,22 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <shortRevisionLength>5</shortRevisionLength>
+        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -2,7 +2,7 @@
         "name" : "irc (java)",
         "description" : "IRC Client Logging",
         "author": "Kit Plummer",
-        "version": "${project.version}",
+        "version": "${project.version}-${buildNumber}",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
@@ -48,7 +48,7 @@
         "name" : "irc confirmation (java)",
         "description" : "Posts an IRC message and waits for confirmation(nickname: [yes|no])",
         "author": "Kit Plummer",
-        "version": "${project.version}",
+        "version": "${project.version}-${buildNumber}",
         "class": "com.maestrodev.IrcWorker",
         "type":"java",
         "dependencies":[
