@@ -1,48 +1,38 @@
-<project xmlns       = "http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Note that the execution environment for LuCEE agents needs access to this POM, we need to ship it all to avoid needing to run this remotely -->
-  <parent>
-    <groupId>com.maestrodev</groupId>
-    <artifactId>maestrodev</artifactId>
-    <version>1</version>
-  </parent>
+  <groupId>com.maestrodev</groupId>
+  <artifactId>maestro-irc-plugin</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  <name>maestro-irc-plugin</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <slf4j.version>1.5.8</slf4j.version>
-  </properties>
-  
-  <artifactId>maestro-irc-plugin</artifactId>
-  <version>1.1-SNAPSHOT</version>
-
-  <name>maestro-irc-plugin</name>
+  </properties>  
 
   <scm>
     <developerConnection>scm:git:git@github.com:maestrodev/maestro-irc-plugin.git</developerConnection>
     <connection>scm:git:git@github.com:maestrodev/maestro-irc-plugin.git</connection>
   </scm>
   
-
-  <!-- TODO: should just use the one from parent, but we need to consolidate-->
   <distributionManagement>
     <repository>
       <id>maestro-deploy</id>
-      <url>https://repo.maestrodev.com/archiva/repository/com.maestrodev.lucee.releases/</url>
+      <url>https://repo.maestrodev.com/archiva/repository/public-releases/</url>
     </repository>
     <snapshotRepository>
       <id>maestro-deploy</id>
-      <url>https://repo.maestrodev.com/archiva/repository/com.maestrodev.lucee.snapshots/</url>
+      <url>https://repo.maestrodev.com/archiva/repository/public-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
-  <!-- TODO: move as much as possible of below to a "plugin parent" POM to reduce what we need to ship across -->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.10</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -53,7 +43,7 @@
     <dependency>
       <groupId>com.maestrodev</groupId>
       <artifactId>maestro-plugin</artifactId>
-      <version>1.2-SNAPSHOT</version>
+      <version>1.2</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -77,8 +67,9 @@
     </resources>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2.2</version>
+        <version>2.3</version>
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/zip.xml</descriptor>

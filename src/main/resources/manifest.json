@@ -1,52 +1,74 @@
-[{ 
-        "name" : "irc (java)",
-        "description" : "IRC Client Logging",
-        "author": "Kit Plummer",
-        "version": "${project.version}-${buildNumber}",
-        "class": "com.maestrodev.IrcWorker",
-        "type":"java",
-        "dependencies" : [
-          {"name" : "maestro-irc-plugin-${project.version}.jar"},
-          {"name" : "pom.xml"}
-        ],
-        "task":{
-            "command" : "/irc/postMessage",    
-            "inputs" : {"body" : {"value" : "", "type" : "String", "required" : true},
-		"nickname":{"value" : "", "type" : "String", "required" : true},
-		"server":{"value" : "", "type" : "String", "required" : true},
-		"password":{"value" : "", "type" : "Password", "required" : false},
-		"ssl":{"value" : "", "type" : "Boolean", "required" : false},
-		"port":{"value" : "", "type" : "Integer", "required" : true},
-		"channel":{"value" : "", "type" : "String", "required" : true},
-                "ignore_failure":{"value" : false, "type" : "Boolean", "required" : false}
-            },
-            "outputs" : {},
-            "tool_name":"Notification"
-        }
+[ {
+  "name" : "irc",
+  "description" : "IRC Client Logging",
+  "author" : "Kit Plummer",
+  "version" : "${project.version}-${buildNumber}",
+  "class" : "com.maestrodev.IrcWorker",
+  "type" : "java",
+  "dependencies" : [ {
+    "name" : "maestro-irc-plugin-${project.version}.jar"
+  }, {
+    "name" : "pom.xml"
+  } ],
+  "task" : {
+    "command" : "/irc/postMessage",
+    "inputs" : {
+      "body" : {
+        "value" : "",
+        "type" : "String",
+        "required" : true
+      },
+      "nickname" : {
+        "value" : "",
+        "type" : "String",
+        "required" : true
+      },
+      "host" : {
+        "value" : "",
+        "type" : "String",
+        "required" : true
+      },
+      "password" : {
+        "value" : "",
+        "type" : "Password",
+        "required" : false
+      },
+      "ssl" : {
+        "value" : "",
+        "type" : "Boolean",
+        "required" : false
+      },
+      "port" : {
+        "value" : "",
+        "type" : "Integer",
+        "required" : true
+      },
+      "channel" : {
+        "value" : "",
+        "type" : "String",
+        "required" : true
+      },
+      "ignore_failure" : {
+        "value" : false,
+        "type" : "Boolean",
+        "required" : false
+      }
     },
-    { 
-        "name" : "irc confirmation (java)",
-        "description" : "Posts an IRC message and waits for confirmation(nickname: [yes|no])",
-        "author": "Kit Plummer",
-        "version": "${project.version}-${buildNumber}",
-        "class": "com.maestrodev.IrcWorker",
-        "type":"java",
-        "dependencies" : [
-           {"name" : "maestro-irc-plugin-${project.version}.jar"},
-           {"name" : "pom.xml"}
-        ],
-        "task":{
-            "command" : "/irc/postMessageAndWaitForConfirmation",    
-            "inputs" : {"body" : {"value" : "", "type" : "String", "required" : true},
-		"nickname":{"value" : "", "type" : "String", "required" : false},
-		"host":{"value" : "", "type" : "String", "required" : true},
-		"password":{"value" : "", "type" : "Password", "required" : false},
-		"ssl":{"value" : "", "type" : "Boolean", "required" : false},
-		"port":{"value" : "", "type" : "Integer", "required" : true},
-		"channel":{"value" : "", "type" : "String", "required" : true},
-                "ignore_failure":{"value" : false, "type" : "Boolean", "required" : false}
-            },
-            "outputs" : {},
-            "tool_name":"Actions"
-        }
-    }]
+    "outputs" : {},
+    "tool_name" : "Notification"
+  }
+},
+  "source_types" : [ {
+    "name" : "irc",
+    "options" : {
+      "body" : "String",
+      "nickname" : "String",
+      "host" : "String",
+      "password" : "Password",
+      "ssl" : "Bolean",
+      "port" : "Integer",
+      "channel" : "String",
+      "ignore_failure" : "Boolean"
+    }
+  } ]
+} ]

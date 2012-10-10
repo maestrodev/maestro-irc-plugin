@@ -1,138 +1,75 @@
 package com.maestrodev;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
+
 import org.json.simple.JSONObject;
+import org.junit.Test;
 
 /**
- * Unit test for simple App.
+ * Unit test for the Irc worker
  */
-public class IrcWorkerTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public IrcWorkerTest( String testName )
-    {
-        super( testName );
+@SuppressWarnings("unchecked")
+public class IrcWorkerTest {
+
+    private JSONObject defaultFields() {
+        JSONObject fields = new JSONObject();
+        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
+        fields.put("nickname", "irc-plugin-test");
+        fields.put("host", "irc.freenode.net");
+        fields.put("password", "");
+        fields.put("ssl", "false");
+        fields.put("port", "6667");
+        fields.put("channel", "#maestrodev");
+        fields.put("ignore_failure", "false");
+        return fields;
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( IrcWorkerTest.class );
-    }
-    
-    /**x
-     * Test IrcWorker
-     */
-    public void testPostMessage() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-    {
+    @Test
+    public void testPostMessage() throws Exception {
         IrcWorker ircWorker = new IrcWorker();
-        JSONObject fields = new JSONObject();
-        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
-        fields.put("nickname", "irc-plugin-test");        
-        fields.put("host", "irc.freenode.net");
-        fields.put("password", "");
-        fields.put("ssl", "false");
-        fields.put("port", "6667");
-        fields.put("channel", "#kittest");
-        fields.put("ignore_failure", "false");
-        
+        JSONObject fields = defaultFields();
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
-               
-        Method method = ircWorker.getClass().getMethod("postMessage");
-        method.invoke(ircWorker);
-        
-        assertNull(ircWorker.getField("__error__"));
+        ircWorker.postMessage();
+
+        assertNull(ircWorker.getError(), ircWorker.getError());
     }
-    
-    
-         /**
-     * Test IrcWorker
-     */
-    public void testIgnoreFailureOnFailure() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-    {
-        
+
+    @Test
+    public void testIgnoreFailureOnFailure() throws Exception {
+
         IrcWorker ircWorker = new IrcWorker();
-        JSONObject fields = new JSONObject();
-        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
-        fields.put("nickname", "irc-plugin-test");        
+        JSONObject fields = defaultFields();
         fields.put("host", "not.real.com");
-        fields.put("password", "");
-        fields.put("ssl", "false");
-        fields.put("port", "6667");
-        fields.put("channel", "#kittest");
         fields.put("ignore_failure", "true");
-        
+
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
-               
-        Method method = ircWorker.getClass().getMethod("postMessage");
-        method.invoke(ircWorker);
-        
-        assertNull(ircWorker.getField("__error__"));
+        ircWorker.postMessage();
+
+        assertNull(ircWorker.getError(), ircWorker.getError());
     }
-    
-    
-    public void testDontIgnoreFailureOnFailure() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-    {
-        
+
+    @Test
+    public void testDontIgnoreFailureOnFailure() throws Exception {
+
         IrcWorker ircWorker = new IrcWorker();
-        JSONObject fields = new JSONObject();
-        fields.put("body", "Hello From Maestro 4!\rGoodbye from Maestro4\nI am lost...");
-        fields.put("nickname", "irc-plugin-test");        
+        JSONObject fields = defaultFields();
         fields.put("host", "not.real.com");
-        fields.put("password", "");
-        fields.put("ssl", "false");
-        fields.put("port", "6667");
-        fields.put("channel", "#kittest");
-        fields.put("ignore_failure", "false");
-        
+
         JSONObject workitem = new JSONObject();
         workitem.put("fields", fields);
         ircWorker.setWorkitem(workitem);
-               
-        Method method = ircWorker.getClass().getMethod("postMessage");
-        method.invoke(ircWorker);
-        
-        assertNotNull(ircWorker.getField("__error__"));
-    }
-     /**
-     * Test IrcWorker
-     */
-    public void testPostMessageAndWaitForConfirmation() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
-    {
-        IrcWorker ircWorker = new IrcWorker();
-        JSONObject fields = new JSONObject();
-        fields.put("body", "Something Happened Would You like to proceed?");
-        fields.put("nickname", "irc-plugin-test2");        
-        fields.put("host", "irc.freenode.net");
-        fields.put("password", null);
-        fields.put("ssl", "false");
-        fields.put("port", "6667");
-        fields.put("channel", "#kittest");
-        fields.put("ignore_failure", "false");
-        
-        
-        JSONObject workitem = new JSONObject();
-        workitem.put("fields", fields);
-        ircWorker.setWorkitem(workitem);
-               
-        
-        Method method = ircWorker.getClass().getMethod("postMessageAndWaitForConfirmation");
-        assertNotNull(method);
-        
+
+        try {
+            ircWorker.postMessage();
+            fail("Exception should be thrown");
+        } catch (Exception e) {
+
+        }
+
+        assertEquals("Error Posting Message not.real.com", ircWorker.getError());
     }
 }
