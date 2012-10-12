@@ -1,6 +1,6 @@
 [ {
   "name" : "irc",
-  "description" : "IRC Client Logging",
+  "description" : "IRC Notifications",
   "author" : "Kit Plummer",
   "version" : "${project.version}-${buildNumber}",
   "class" : "com.maestrodev.IrcWorker",
@@ -14,50 +14,58 @@
     "command" : "/irc/postMessage",
     "inputs" : {
       "body" : {
-        "value" : "",
+        "value" : "A message from maestro!",
         "type" : "String",
-        "required" : true
+        "required" : true,
+        "description" : "message body"
       },
       "nickname" : {
-        "value" : "",
+        "value" : "maestro",
         "type" : "String",
-        "required" : true
+        "required" : true,
+        "description" : "nick used to connect to IRC"
       },
       "host" : {
-        "value" : "",
+        "value" : "irc.freenode.net",
         "type" : "String",
-        "required" : true
+        "required" : true,
+        "description" : "IRC server host"
       },
       "password" : {
-        "value" : "",
+        "value" : null,
         "type" : "Password",
-        "required" : false
+        "required" : false,
+        "description" : "IRC server password"
       },
       "ssl" : {
-        "value" : "",
+        "value" : false,
         "type" : "Boolean",
-        "required" : false
+        "required" : false,
+        "description" : "use SSL for connecting"
       },
       "port" : {
-        "value" : "",
+        "value" : 6667,
         "type" : "Integer",
-        "required" : true
+        "required" : true,
+        "description" : "IRC server port"
       },
       "channel" : {
-        "value" : "",
+        "value" : "#maestrodev",
         "type" : "String",
-        "required" : true
+        "required" : true,
+        "description" : "IRC channel for notifications"
       },
       "ignore_failure" : {
         "value" : false,
         "type" : "Boolean",
-        "required" : false
+        "required" : false,
+        "description" : "Do not fail composition if message can't be delivered"
       }
     },
     "outputs" : {},
-    "tool_name" : "Notification"
-  }
-},
+    "tool_name" : "Notification",
+    "icon": "irc.png"
+  },
   "source_types" : [ {
     "name" : "irc",
     "options" : {

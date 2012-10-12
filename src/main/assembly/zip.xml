@@ -18,6 +18,10 @@
       <outputDirectory>/config</outputDirectory>
       <directory>${basedir}/config</directory>
     </fileSet>
+    <fileSet>
+      <outputDirectory>/images</outputDirectory>
+      <directory>${basedir}/src/main/images</directory>
+    </fileSet>
   </fileSets>
   <files>
     <file>
