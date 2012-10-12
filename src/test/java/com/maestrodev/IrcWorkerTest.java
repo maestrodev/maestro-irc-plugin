@@ -2,8 +2,12 @@ package com.maestrodev;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.json.simple.JSONObject;
 import org.junit.Test;
+
+import com.maestrodev.maestro.plugin.Manifest;
 
 /**
  * Unit test for the Irc worker
@@ -22,6 +26,14 @@ public class IrcWorkerTest {
         fields.put("channel", "#maestrodev");
         fields.put("ignore_failure", "false");
         return fields;
+    }
+
+    @Test
+    public void validateManifest() throws Exception {
+        Manifest manifest = new Manifest(this.getClass().getClassLoader().getResourceAsStream("manifest.json"));
+        manifest.validate();
+        assertTrue(Arrays.toString(manifest.getErrors().toArray()), manifest.isValid());
+        assertEquals(1, manifest.getPlugins().size());
     }
 
     @Test
