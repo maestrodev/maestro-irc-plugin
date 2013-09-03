@@ -1,4 +1,6 @@
-[ {
+{
+  "image": "irc.png",
+  "tasks": [{
   "name" : "irc",
   "description" : "IRC Notifications",
   "author" : "Kit Plummer",
@@ -80,3 +82,4 @@
     }
   } ]
 } ]
+}
