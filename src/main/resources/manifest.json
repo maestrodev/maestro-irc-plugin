@@ -75,7 +75,7 @@
       "nickname" : "String",
       "host" : "String",
       "password" : "Password",
-      "ssl" : "Bolean",
+      "ssl" : "Boolean",
       "port" : "Integer",
       "channel" : "String",
       "ignore_failure" : "Boolean"
